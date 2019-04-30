@@ -1,2 +1,9 @@
-applicationContext.xml
+**/applicationContext.xml
+*.classpath*
+*.settings*
+*.project*
+*resources*
+*target*
+*mvn*
+
 
