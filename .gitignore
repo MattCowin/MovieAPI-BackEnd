@@ -1,9 +1,9 @@
- src/main/resources/applicationContext.xml
 *.classpath*
 *.settings*
 *.project*
 *resources*
 *target*
 *mvn*
+src/main/resources/applicationContext.xml
 
 
