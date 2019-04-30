@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:c="http://www.springframework.org/schema/c"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+	<!-- Enable Annotations -->
+	<context:annotation-config />
+
+	<!-- Enable @Transactional -->
+	<tx:annotation-driven />
+
+	<!-- Package Scan -->
+	<context:component-scan base-package="com.revature.repository" />
+	<context:component-scan base-package="com.revature.service" />
+
+	<!-- Hibernate Integration with Contextual Sessions (Requires these 3 beans) -->
+	<!-- Datasource -->
+	<!-- Do not upload credentials to github. This file is in .gitignore -->
+	<bean name="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
+	<property name="url" value=" " />
+		<property name="username" value=" " />
+		<property name="password" value=" " />
+	</bean>
+
+	<!-- SessionFactory -->
+	<bean name="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<!-- name of class in springframework. ref is refering to bean name datasource 
+			above -->
+		<property name="dataSource" ref="dataSource" />
+		<!-- Scan just the model package, that's where all the hibernate entities 
+			will be stored. -->
+		<property name="packagesToScan" value="com.revature.model" />
+		<property name="hibernateProperties">
+			<props>
+				<!-- Location of hibernate.dialect -->
+				<prop key="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</prop>
+				<!-- set true so we can see the queries hibernate is sending -->
+				<prop key="hibernate.show_sql">true</prop>
+				<!-- development use update, for production use validate -->
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
+			</props>
+		</property>
+	</bean>
+
+	<!-- TransactionManager -->
+	<bean name="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+
+	</bean>
+
+
+
+
+
+</beans>
