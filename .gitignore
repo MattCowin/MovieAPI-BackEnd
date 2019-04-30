@@ -1,4 +1,4 @@
-**/applicationContext.xml
+ src/main/resources/applicationContext.xml
 *.classpath*
 *.settings*
 *.project*
