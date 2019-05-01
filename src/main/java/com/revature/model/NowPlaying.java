@@ -1,22 +1,39 @@
 package com.revature.model;
 
-import java.util.ArrayList;
-
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+@Entity
+@Table(name="nowPlaying")
 public class NowPlaying {
-
+		@Column
 		private int voteCount;
+		@Id
+		@Column
 		private long id;
+		@Column
 		private boolean video;
+		@Column
 		private double voteAverage;
+		@Column
 		private String title;
+		@Column
 		private double popularity;
+		@Column
 		private String posterPath;
+		@Column
 		private String originalLanguage;
+		@Column
 		private String originalTitle;
+		@Column
 		//private ArrayList<genre>genreIds;
 		private String backdropPath;
+		@Column
 		private boolean adult;
+		@Column
 		private String overview;
+		@Column
 		private String releaseDate;
 		
 		public NowPlaying() {
