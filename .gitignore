@@ -1,9 +1,8 @@
 **/.classpath
 **/.settings
 **/.project
-**/resources/
 **/target/
 **/mvn/
-**/applicationContext.xml
+**/log4j.properties
 
 
