@@ -2,10 +2,13 @@ package com.revature.service;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import com.revature.model.Movie;
 
 // Known by William as "MovieServiceImpl", the Alpha is an alternate notation for implementations.
 // com.revature.service = server layer (java business logic)
+@Service("movieService")
 public class MovieServiceAlpha implements MovieService{
 
 	@Override
