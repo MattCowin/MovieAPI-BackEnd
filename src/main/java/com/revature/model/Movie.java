@@ -13,6 +13,10 @@ public class Movie {
 	@Id
 	@Column(name="M_ID")
 	private int id;
+	
+	//Foreign key
+	@Column(name="USER_ID")
+	private int userId;
 
 	//TODO implement the variables in the movie bean we want to store & have
 	// 		hibernate manage for us.
