@@ -9,7 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.revature.model.User;
+
+import com.revature.model.Users;
 
 
 
@@ -23,17 +24,17 @@ public class UserRepositoryHibernate implements UserRepository{
 	private SessionFactory sessionFactory;
 	
 	@Override
-	public void save(User user) {
+	public void save(Users user) {
 		logger.trace("Attempting to save a user");
 		sessionFactory.getCurrentSession().save(user);
 		
 	}
 
 	@Override
-	public User findByUsername(String username) {
+	public Users findByUsername(String username) {
 		logger.trace("Attempting to retrive a user by username");
 		try {
-			return(User) sessionFactory.getCurrentSession().createCriteria(User.class)
+			return(Users) sessionFactory.getCurrentSession().createCriteria(Users.class)
 					.add(Restrictions.ilike("username", username))
 					.list()
 					.get(0);

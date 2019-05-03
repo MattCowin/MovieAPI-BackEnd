@@ -1,11 +1,12 @@
 package com.revature.service;
 
-import com.revature.model.User;
+
+import com.revature.model.Users;
 
 public interface UserService {
 
-		public User getUser(String username);
-		public boolean registerUser(User user);
+		public Users getUser(String username);
+		public boolean registerUser(Users user);
 		
 		
 }

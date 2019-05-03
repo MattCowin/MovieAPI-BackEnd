@@ -9,37 +9,37 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="USER")
-public class User {
+@Table(name="USERS")
+public class Users {
 		
 		@Id
 		@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="userDataSequence")
 		@SequenceGenerator(name="userDataSequence", sequenceName="USER", allocationSize=1)
 		@Column(name="USER_ID")
-		private int id;
+		private int userId;
 		@Column(name="USERNAME")
 		private String username;
 		@Column(name="PASSWORD")
 		private String password;
 		
-		public User() {
+		public Users() {
 			super();
 			
 		}
 
-		public User(int userId, String username, String password) {
+		public Users(int userId, String username, String password) {
 			super();
-			this.id = userId;
+			this.userId = userId;
 			this.username = username;
 			this.password = password;
 		}
 
 		public int getUserId() {
-			return id;
+			return userId;
 		}
 
 		public void setUserId(int userId) {
-			this.id = userId;
+			this.userId = userId;
 		}
 
 		public String getUsername() {
@@ -60,7 +60,7 @@ public class User {
 
 		@Override
 		public String toString() {
-			return "User [userId=" + id + ", username=" + username + ", password=" + password + "]";
+			return "User [userId=" + userId + ", username=" + username + ", password=" + password + "]";
 		}
 		
 		

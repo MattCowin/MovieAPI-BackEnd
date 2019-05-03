@@ -14,7 +14,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.revature.ajax.ClientMessage;
-import com.revature.model.User;
+
+import com.revature.model.Users;
 import com.revature.service.UserService;
 @Controller("userController")
 @CrossOrigin(origins = "http://localhost:4200")
@@ -24,13 +25,13 @@ public class UserControllerAlpha implements UserController{
 	@Autowired
 	private UserService userService;
 	@PostMapping("/register")
-	public @ResponseBody ClientMessage registerUser(@RequestBody User user) {
+	public @ResponseBody ClientMessage registerUser(@RequestBody Users user) {
 		logger.trace("Registering a new user " + user);
 		return (userService.registerUser(user)) ? REGISTRATION_SUCCESSFUL : SOMETHING_WENT_WRONG;
 	}
 
 	@PostMapping("/findUser")
-	public @ResponseBody User findUser(@RequestBody User user, HttpServletRequest request) {
+	public @ResponseBody Users findUser(@RequestBody Users user, HttpServletRequest request) {
 		logger.trace("Finding user " + user);
 		request.getSession();
 		return userService.getUser(user.getUsername());
