@@ -24,7 +24,7 @@ public class PopularMoviesAlpha{
 //	    return "jsonTemplate";
 //	}
 	
-	//@RequestMapping(value = "/popularmovies", produces = MediaType.APPLICATION_JSON_VALUE,  method = RequestMethod.GET)
+	@RequestMapping(value = "/popularmovies", produces = MediaType.APPLICATION_JSON_VALUE,  method = RequestMethod.GET)
 	private String getMovies(PopMovie popMovie){
 		logger.trace("Attempting to pull from the Popular Movies API");
 	    final String url = "https://api.themoviedb.org/3/movie/popular?api_key=0c0310c62d5381ede7d4780860ab79f6&language=en-US&page=1";
