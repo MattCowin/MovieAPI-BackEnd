@@ -1,6 +1,7 @@
 package com.revature.model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,7 +18,7 @@ public class PopMovie {
 	@Column(name="title")
 	private String title;
 	@Column(name="genre_ids")
-	private ArrayList<PopMovie> genre = new ArrayList<>();
+	private List<PopMovie> genre = new ArrayList<>();
 	@Column(name="release_date")
 	private String releaseDate;
 	
@@ -48,7 +49,7 @@ public class PopMovie {
 		this.title = title;
 	}
 
-	public ArrayList<PopMovie> getGenre() {
+	public List<PopMovie> getGenre() {
 		return genre;
 	}
 
