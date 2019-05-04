@@ -7,11 +7,14 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.client.RestTemplate;
+
 import com.revature.model.PopMovie;
 
+@Service("popMoviesService")
 public class PopularMoviesAlpha implements PopularMovies{
 	
 	private static Logger logger = Logger.getLogger(PopularMoviesAlpha.class);
@@ -35,7 +38,9 @@ public class PopularMoviesAlpha implements PopularMovies{
 //	   return result;  
 //	   
 //	}
+	@RequestMapping(value = "/popularmovies", produces = MediaType.APPLICATION_JSON_VALUE,  method = RequestMethod.GET)
 	public List<PopMovie> getAllMovies() {
+		logger.trace("Attempting to return a list of Popular Movies");
 		ResponseEntity<PopMovie[]> response = restTemplate.getForEntity(url, PopMovie[].class);
 		return Arrays.asList(response.getBody());
 
