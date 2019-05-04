@@ -18,7 +18,7 @@ public class PopMovie {
 	@Column(name="title")
 	private String title;
 	@Column(name="genre_ids")
-	private List<PopMovie> genre = new ArrayList<>();
+	private ArrayList<PopMovie> genre = new ArrayList<>();
 	@Column(name="release_date")
 	private String releaseDate;
 	
