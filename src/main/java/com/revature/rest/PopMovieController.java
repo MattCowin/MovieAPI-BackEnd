@@ -23,6 +23,7 @@ public class PopMovieController {
 	@Autowired
 	public PopMovieController(PopMovieRepository popMovieRepository) {
 		this.popMovieRepository = popMovieRepository;
+		 
 	}
 	
 	@RequestMapping(method=RequestMethod.GET)
@@ -31,6 +32,7 @@ public class PopMovieController {
 	    @RequestParam(value = "title") String title,
 	    @RequestParam(value = "genre_ids") List<PopMovie> genre,
 	    @RequestParam(value = "release_date") String releaseDate){
+		logger.trace("Attempting to gather selected columns from the API:");
 		return popMovieRepository.findAll();
 	}
 }
