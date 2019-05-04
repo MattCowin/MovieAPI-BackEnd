@@ -21,15 +21,18 @@ public class UserServiceAlpha implements UserService {
 	}
 	
 	public UserServiceAlpha(UserRepository userRepository) {
+		
 		this.userRepository = userRepository;
 	}
 	@Override
 	public Users getUser(String username) {
+		logger.trace("Attempting to get a user by username:" + username);
 		return userRepository.findByUsername(username);
 	}
 
 	@Override
 	public boolean registerUser(Users user) {
+		logger.trace("Attempting to register a user:" + user);
 		userRepository.save(user);
 		return user.getUserId() !=0;
 	}
