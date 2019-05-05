@@ -10,5 +10,5 @@ public interface PopularMovies {
 	//List<PopMovie> getPopMovieList();
 	PopMovieList getPopMovieList();
 	//PopMovie getByName();
-	
+
 }
