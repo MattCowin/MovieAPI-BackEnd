@@ -7,7 +7,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
 
 import com.revature.api.PopularMovies;
-import com.revature.config.AppConfig;
+
 import com.revature.model.Users;
 import com.revature.service.MovieService;
 import com.revature.service.UserService;
@@ -22,7 +22,7 @@ public class Driver {
 	public static void main(String[] args) {
 		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 		
-		AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext(AppConfig.class);
+		//AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext(AppConfig.class);
 
 //		UserService userService = context.getBean("userService", UserService.class);
 //		logger.trace(userService.registerUser(new User(0, "Cowin", "1234")));

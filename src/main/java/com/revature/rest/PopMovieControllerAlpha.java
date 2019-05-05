@@ -14,12 +14,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.revature.api.PopularMovies;
 import com.revature.model.PopMovie;
+import com.revature.model.PopMovieList;
 
 
 
 @Controller
 @CrossOrigin(origins="http://localhost:4200")
-@RequestMapping(value = "popularmovies", produces = MediaType.APPLICATION_JSON_VALUE,  method = RequestMethod.GET)
+@RequestMapping(value = "/popularmovies", produces = MediaType.APPLICATION_JSON_VALUE,  method = RequestMethod.GET)
 public class PopMovieControllerAlpha {
 	
 	private static final Logger logger = Logger.getLogger(PopMovieControllerAlpha.class);
@@ -35,12 +36,12 @@ public class PopMovieControllerAlpha {
 	}
 	
 	@GetMapping("/all")
-	public List<PopMovie> findAllMovies(
-		@RequestParam(value = "id") int popId,
-	    @RequestParam(value = "title") String title,
-	    @RequestParam(value = "genre_ids") List<PopMovie> genre,
-	    @RequestParam(value = "release_date") String releaseDate){
+	public PopMovieList findAllMovies() {
+//		@RequestParam(value = "id") int popId,
+//	    @RequestParam(value = "title") String title,
+//	    @RequestParam(value = "genre_ids") List<PopMovie> genre,
+//	    @RequestParam(value = "release_date") String releaseDate){
 		logger.trace("Attempting to gather selected columns from the API:");
-		return popularMovies.getAllMovies();
+		return popularMovies.getPopMovieList();
 	}
 }
