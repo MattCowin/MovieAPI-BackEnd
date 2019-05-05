@@ -20,7 +20,7 @@ import com.revature.model.PopMovieList;
 
 @Controller
 @CrossOrigin(origins="http://localhost:4200")
-@RequestMapping(value = "/popularmovies", produces = MediaType.APPLICATION_JSON_VALUE,  method = RequestMethod.GET)
+@RequestMapping(value = "/popularmovies", consumes  = MediaType.APPLICATION_JSON_VALUE,  method = RequestMethod.GET)
 public class PopMovieControllerAlpha {
 	
 	private static final Logger logger = Logger.getLogger(PopMovieControllerAlpha.class);

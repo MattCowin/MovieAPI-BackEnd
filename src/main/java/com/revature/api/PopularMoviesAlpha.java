@@ -34,23 +34,23 @@ public class PopularMoviesAlpha implements PopularMovies{
 	}
 	
 	
-//	@RequestMapping(value = "/popularmovies", produces = MediaType.APPLICATION_JSON_VALUE,  method = RequestMethod.GET)
-//	private PopMovie getMovies(PopMovie popMovie){
-//		logger.trace("Attempting to pull from the Popular Movies API");
-//	    final String url = "https://api.themoviedb.org/3/movie/popular?api_key=0c0310c62d5381ede7d4780860ab79f6&language=en-US&page=1";
-//	     
-//	    RestTemplate restTemplate = new RestTemplate();
-//	    PopMovie result = restTemplate.getForObject(url, PopMovie.class);
-//	   return result;  
-//	   
-//	}
+	
 	public PopMovieList getPopMovieList(){
-		logger.trace("Attempting to get a list of Popular Movies");
-		RestTemplate restTemplate = new RestTemplate();
-		PopMovieList popMovie = restTemplate.getForObject(url, PopMovieList.class);
-		return popMovie;
+		logger.trace("Attempting to pull from the Popular Movies API");
+	    final String url = "https://api.themoviedb.org/3/movie/popular?api_key=0c0310c62d5381ede7d4780860ab79f6&language=en-US&page=1";
+	     
+	    RestTemplate restTemplate = new RestTemplate();
+	    PopMovieList result = restTemplate.getForObject(url, PopMovieList.class);
+	   return result;  
+	   
 	}
-//	public List<PopMovie> getAllMovies() {
+//	public PopMovieList getPopMovieList(){
+//		logger.trace("Attempting to get a list of Popular Movies");
+//		RestTemplate restTemplate = new RestTemplate();
+//		PopMovieList popMovie = restTemplate.getForObject(url, PopMovieList.class);
+//		return popMovie;
+//	}
+//	public List<PopMovie> getPopMovieList() {
 //		logger.trace("Attempting to return a list of Popular Movies");
 //		ResponseEntity<PopMovie[]> response = restTemplate.getForEntity(url, PopMovie[].class);
 //		return Arrays.asList(response.getBody());
