@@ -13,8 +13,8 @@ import javax.persistence.Table;
 public class Users {
 		
 		@Id
-		@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="userDataSequence")
-		@SequenceGenerator(name="userDataSequence", sequenceName="USERS", allocationSize=1)
+		@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="userSequence")
+		@SequenceGenerator(name="userSequence", sequenceName="USERS_SEQ", allocationSize=1)
 		@Column(name="USER_ID")
 		private int userId;
 		@Column(name="USERNAME")
