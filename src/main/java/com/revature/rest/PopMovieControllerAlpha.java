@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.revature.api.PopularMovies;
 import com.revature.model.PopMovie;
-import com.revature.repository.PopMovieRepository;
+
 
 
 @Controller

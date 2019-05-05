@@ -24,6 +24,7 @@ public class UserControllerAlpha implements UserController{
 	private static Logger logger = Logger.getLogger(UserControllerAlpha.class);
 	@Autowired
 	private UserService userService;
+	
 	@PostMapping("/register")
 	public @ResponseBody ClientMessage registerUser(@RequestBody Users user) {
 		logger.trace("Registering a new user " + user);
