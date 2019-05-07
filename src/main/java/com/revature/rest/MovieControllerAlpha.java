@@ -1,11 +1,15 @@
 package com.revature.rest;
 
+import static com.revature.util.ClientMessageUtil.REGISTRATION_SUCCESSFUL;
+import static com.revature.util.ClientMessageUtil.SOMETHING_WENT_WRONG;
+
 import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.revature.ajax.ClientMessage;
 import com.revature.model.Movie;
@@ -25,9 +29,9 @@ public class MovieControllerAlpha implements MovieController {
 	
 	@Override
 	@PostMapping("/favorite")
-	public ClientMessage addFavoriteMovie(Movie movie) {
-		// TODO Auto-generated method stub
-		return null;
+	public @ResponseBody ClientMessage addFavoriteMovie(Movie movie) {
+		logger.trace("*** Registering a new favorite movie " + movie);
+		return (movieService.registerMovie(movie)) ? REGISTRATION_SUCCESSFUL : SOMETHING_WENT_WRONG;
 	}
 
 	@Override
@@ -40,9 +44,9 @@ public class MovieControllerAlpha implements MovieController {
 
 	@Override
 	@PostMapping("/findMovie")
-	public Movie findMovie(Movie movie) {
-		// TODO Auto-generated method stub
-		return null;
+	public @ResponseBody Movie findMovie(Movie movie) {
+		logger.trace("*** Finding movie " + movie);
+		return movieService.getMovie(movie.getTitle());
 	}
 
 }
