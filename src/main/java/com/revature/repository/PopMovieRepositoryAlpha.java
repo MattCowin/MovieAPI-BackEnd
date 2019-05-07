@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.fasterxml.jackson.annotation.JsonGetter;
 import com.revature.model.PopMovie;
 @Repository("popMovieRepository")
 @Transactional
@@ -15,12 +16,14 @@ public class PopMovieRepositoryAlpha implements PopMovieRepository {
 	@Autowired
 	private SessionFactory sessionFactory; 
 	
+	@JsonGetter
 	@Override
 	public List<PopMovie> findAll() {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
+	
+	
 	@Override
 	public PopMovie findByTitle(String title) {
 		// TODO Auto-generated method stub

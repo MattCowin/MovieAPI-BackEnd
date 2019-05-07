@@ -17,7 +17,7 @@ public class Users {
 		@SequenceGenerator(name="userSequence", sequenceName="USERS_SEQ", allocationSize=1)
 		@Column(name="USER_ID")
 		private int userId;
-		@Column(name="USERNAME")
+		@Column(name="USERNAME", unique=true)
 		private String username;
 		@Column(name="PASSWORD")
 		private String password;

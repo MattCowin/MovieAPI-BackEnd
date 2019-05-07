@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.client.RestTemplate;
@@ -21,10 +22,10 @@ public class PopularMoviesAlpha implements PopularMovies{
 	
 	private static Logger logger = Logger.getLogger(PopularMoviesAlpha.class);
 	
-//	@Autowired
+	@Autowired
 	RestTemplate restTemplate;
-//	@Autowired
-//	PopMovieRepository popMovieRepositry;
+	@Autowired
+	PopMovieRepository popMovieRepositry;
 	
 	final String url = "https://api.themoviedb.org/3/movie/popular?api_key=0c0310c62d5381ede7d4780860ab79f6&language=en-US&page=1";
 	final String findBy = "https://api.themoviedb.org/3/search/movie?api_key=0c0310c62d5381ede7d4780860ab79f6&language=en-US&query=";
@@ -33,21 +34,20 @@ public class PopularMoviesAlpha implements PopularMovies{
 		
 	}
 	
-	public PopMovieList getPopMovieList(){
-		logger.trace("Attempting to pull from the Popular Movies API");
-	    final String url = "https://api.themoviedb.org/3/movie/popular?api_key=0c0310c62d5381ede7d4780860ab79f6&language=en-US&page=1";
-	     
-	    RestTemplate restTemplate = new RestTemplate();
-	    PopMovieList result = restTemplate.getForObject(url, PopMovieList.class);
-	   return result;  
-	   
+	public PopMovie getPopMovieList(@RequestBody PopMovie popmovie){
+		logger.trace("Attempting to get a list of Popular Movies");
+		RestTemplate restTemplate = new RestTemplate();
+		PopMovie popMovie = restTemplate.getForObject(url, PopMovie.class);
+		return popMovie;
 	}
-//	public PopMovieList getPopMovieList(){
+	
+//	public PopMovieList getPopMovieList(@RequestBody PopMovie popmovie){
 //		logger.trace("Attempting to get a list of Popular Movies");
 //		RestTemplate restTemplate = new RestTemplate();
 //		PopMovieList popMovie = restTemplate.getForObject(url, PopMovieList.class);
 //		return popMovie;
 //	}
+	
 //	public List<PopMovie> getPopMovieList() {
 //		logger.trace("Attempting to return a list of Popular Movies");
 //		ResponseEntity<PopMovie[]> response = restTemplate.getForEntity(url, PopMovie[].class);
