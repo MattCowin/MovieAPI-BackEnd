@@ -20,7 +20,7 @@ public class MovieServiceAlpha implements MovieService{
 	
 	public MovieServiceAlpha() {} 
 
-	public MovieServiceAlpha(MovieService movieRepository) {
+	public MovieServiceAlpha(MovieRepository movieRepository) {
 		this.movieRepository = movieRepository;
 		//wait are these constructors necessary? We already autowired...
 		// TODO figure this out tomorrow.
