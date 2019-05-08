@@ -14,12 +14,12 @@ import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonSetter;
 
 @Entity
-@Table(name = "MOVIE")
+@Table(name = "MOVIE")		
 public class Movie {
-
+	// TODO clean up, make variable names match JSON names Exactly. Remake getter/setters
+	// TODO @ManytoMany and @JoinTable annotations
+	
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "movieSequence")
-	@SequenceGenerator(name = "movieSequence", sequenceName = "USER", allocationSize = 1)
 	@Column(name = "MOVIE_ID")
 	private int id; // Primary Key, movie's unique ID from the API
 
@@ -27,6 +27,7 @@ public class Movie {
 	@Column(name = "USER_ID")
 	private int userId; // which user favorited this movie. Not marshalled, add userId from session
 						// data.
+	// Use a join table, so movies only entered into the movie table once. Join table will be key:value for user and the movies they favorited.
 
 	@Column(name = "VOTE_COUNT")
 	private double voteCount;
@@ -64,25 +65,6 @@ public class Movie {
 
 	public Movie() {
 		super();
-	}
-
-	public Movie(int id, int userId, double voteCount, boolean video, double voteAverage, String title,
-			double popularity, String posterPath, String originalLanguage, String originalTitle,
-			ArrayList<String> genres, String backdropPath, String overview) {
-		super();
-		this.id = id;
-		this.userId = userId;
-		this.voteCount = voteCount;
-		this.video = video;
-		this.voteAverage = voteAverage;
-		this.title = title;
-		this.popularity = popularity;
-		this.posterPath = posterPath;
-		this.originalLanguage = originalLanguage;
-		this.originalTitle = originalTitle;
-		this.genres = genres;
-		this.backdropPath = backdropPath;
-		this.overview = overview;
 	}
 
 	@JsonGetter("id")
@@ -308,7 +290,8 @@ public class Movie {
 
 }
 /*
-{"page":1,"total_results":19806,"total_pages":991,"results":[{
+{"page":1,"total_results":19806,"total_pages":991,"results":[
+{
 "vote_count":3645,
 "id":299534,
 "video":false,
@@ -320,7 +303,7 @@ public class Movie {
 "original_title":"Avengers: Endgame",
 "genre_ids":[12,878,28],
 "backdrop_path":"\/7RyHsO4yDXtBv1zUU3mTpHeQ0d5.jpg","adult":false,
-"overview":"After the devastating events of Avengers: Infinity War, the universe is in ruins due to the efforts of the Mad Titan, 
-Thanos. With the help of remaining allies, the Avengers must assemble once more in order to undo Thanos' actions and restore order 
-to the universe once and for all, no matter what consequences may be in store.","release_date":"2019-04-24"}
+"overview":"After the devastating events of Avengers: Infinity War, the universe is in ruins due to the efforts of the Mad Titan, Thanos. With the help of remaining allies, the Avengers must assemble once more in order to undo Thanos' actions and restore order to the universe once and for all, no matter what consequences may be in store., 
+"release_date":"2019-04-24"
+}
 */
