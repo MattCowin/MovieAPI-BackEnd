@@ -43,15 +43,14 @@ public class MovieControllerAlpha implements MovieController {
 
 	@Override
 	@GetMapping("/findAllMovies") 
-	public List<Movie> findAllMovies() {
+	public @ResponseBody List<Movie> findAllMovies() {
 		logger.trace(" *** Getting List of all Favorite Movies. ");
-		// TODO Auto-generated method stub
-		return null;
+		return movieService.getAllMovies();
 	}
 
 	@Override
 	@PostMapping("/findMovie")
-	public @ResponseBody Movie findMovie(Movie movie) {
+	public @ResponseBody Movie findMovie(@RequestBody Movie movie) {
 		logger.trace("*** Finding movie " + movie);
 		return movieService.getMovie(movie.getTitle());
 	}

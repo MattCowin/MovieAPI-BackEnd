@@ -28,7 +28,7 @@ public class MovieServiceAlpha implements MovieService{
 
 	@Override
 	public List<Movie> getAllMovies() {
-		return null;
+		return movieRepository.findAll();
 	}
 
 	@Override
