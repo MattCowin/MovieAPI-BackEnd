@@ -28,17 +28,22 @@ public class MovieRepositoryHibernate implements MovieRepository {
 		sessionFactory.getCurrentSession().save(movie);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Movie> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+			return (List<Movie>) sessionFactory.getCurrentSession().createCriteria(Movie.class)
+					.list();
+		}catch(IndexOutOfBoundsException e) {
+			return null;
+		}
 	}
 
 	@Override
 	public Movie findByTitle(String title) {
 		logger.trace("*** Attempting to retrive a movie by title");
 		try {
-			return(Movie) sessionFactory.getCurrentSession().createCriteria(Users.class)
+			return(Movie) sessionFactory.getCurrentSession().createCriteria(Movie.class)
 					.add(Restrictions.ilike("title", title))
 					.list()
 					.get(0);
