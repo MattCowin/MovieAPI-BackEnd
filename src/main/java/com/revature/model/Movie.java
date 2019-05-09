@@ -1,222 +1,219 @@
 package com.revature.model;
 
-import java.util.ArrayList;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonGetter;
-import com.fasterxml.jackson.annotation.JsonSetter;
+import org.apache.log4j.Logger;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
-@Table(name = "MOVIE")		
+@Table(name = "MOVIE")	
+@JsonIgnoreProperties(ignoreUnknown=true)
 public class Movie {
-	// TODO clean up, make variable names match JSON names Exactly. Remake getter/setters
-	// TODO @ManytoMany and @JoinTable annotations
 	
-	@Id
-	@Column(name = "MOVIE_ID")
-	private int id; // Primary Key, movie's unique ID from the API
-
-	// TODO link Foreign key
-	@Column(name = "USER_ID")
-	private int userId; // which user favorited this movie. Not marshalled, add userId from session
-						// data.
-	// Use a join table, so movies only entered into the movie table once. Join table will be key:value for user and the movies they favorited.
-
-	@Column(name = "VOTE_COUNT")
-	private double voteCount;
-
-	@Column(name = "VIDEO")
+	private static Logger logger = Logger.getLogger(Movie.class);
+	
+	@Column
+	private String adult;
+	@Column
+	private String backdrop_path;
+	//private Collection belongs_to_collection;	
+	@Column
+	private String budget;
+	//private ArrayList<Genres> genres;
+	@Column
+	private String homepage;
+	//@Id			// how to handle multiple users adding the same movie?
+	@Column
+	private int id; //   <== PRIMARY KEY. Movie ID
+	@Column
+	private String imdb_id;
+	@Column
+	private String original_language;
+	@Column
+	private String original_title;
+	@Column(length=500)
+	private String overview;
+	@Column
+	private Double popularity;
+	@Column
+	private String poster_path;
+	//private ArrayList<ProdCompanies> production_companies;
+	//private ArrayList<ProdCountries> production_countries;
+	@Column
+	private String release_date;
+	@Column
+	private long revenue;
+	@Column
+	private int runtime;
+	//private ArrayList<SpokenLanguages> spoken_languages;
+	@Column
+	private String status;
+	@Column
+	private String tagline;
+	@Column
+	private String title;
+	@Column
 	private boolean video;
-
-	@Column(name = "VOTE_AVERAGE")
-	private double voteAverage; // average score out of 10
-
-	@Column(name = "TITLE")
-	private String title; // name of movie
-
-	@Column(name = "POPULARITY")
-	private double popularity; // numerical score of popularity relative to other movies
-
-	@Column(name = "POSTER_PATH")
-	private String posterPath; // link to jpg of poster
-
-	@Column(name = "ORIGINAL_LANGUAGE")
-	private String originalLanguage;
-
-	@Column(name = "ORIGINAL_TITLE")
-	private String originalTitle;
-
-	// @Column(name="GENRES") // don't store in DB, just call the genre api and
-	// search by movie's title
-	private ArrayList<String> genres; // array of genre id's
-
-	@Column(name = "BACKDROP_PATH")
-	private String backdropPath;
-
-	@Column(name = "OVERVIEW")
-	private String overview; // synopsis of film
-
-	public Movie() {
-		super();
+	@Column
+	private double vote_average;
+	@Column
+	private int vote_count;
+	
+	// CURRENTLY NO CONSTRUCTORS - DEFAULT CONSTRUCTOR ONLY
+	
+	public String getAdult() {
+		return adult;
 	}
-
-	@JsonGetter("id")
+	public void setAdult(String adult) {
+		this.adult = adult;
+	}
+	public String getBackdrop_path() {
+		return backdrop_path;
+	}
+	public void setBackdrop_path(String backdrop_path) {
+		this.backdrop_path = backdrop_path;
+	}
+	public String getBudget() {
+		return budget;
+	}
+	public void setBudget(String budget) {
+		this.budget = budget;
+	}
+	public String getHomepage() {
+		return homepage;
+	}
+	public void setHomepage(String homepage) {
+		this.homepage = homepage;
+	}
 	public int getId() {
 		return id;
 	}
-
-	@JsonSetter("id")
 	public void setId(int id) {
 		this.id = id;
 	}
-
-	public int getUserId() {
-		return userId;
+	public String getImdb_id() {
+		return imdb_id;
 	}
-
-	public void setUserId(int userId) {
-		this.userId = userId;
+	public void setImdb_id(String imdb_id) {
+		this.imdb_id = imdb_id;
 	}
-
-	@JsonGetter("vote_count")
-	public double getVoteCount() {
-		return voteCount;
+	public String getOriginal_language() {
+		return original_language;
 	}
-
-	@JsonSetter("vote_count")
-	public void setVoteCount(double voteCount) {
-		this.voteCount = voteCount;
+	public void setOriginal_language(String original_language) {
+		this.original_language = original_language;
 	}
-
-	@JsonGetter("video")
-	public boolean isVideo() {
-		return video;
+	public String getOriginal_title() {
+		return original_title;
 	}
-
-	@JsonSetter("video")
-	public void setVideo(boolean video) {
-		this.video = video;
+	public void setOriginal_title(String original_title) {
+		logger.trace("*** Setting Original_Title " + original_title);
+		this.original_title = original_title;
 	}
-
-	@JsonGetter("vote_average")
-	public double getVoteAverage() {
-		return voteAverage;
-	}
-
-	@JsonSetter("vote_average")
-	public void setVoteAverage(double voteAverage) {
-		this.voteAverage = voteAverage;
-	}
-
-	@JsonGetter("title")
-	public String getTitle() {
-		return title;
-	}
-
-	@JsonSetter("title")
-	public void setTitle(String title) {
-		this.title = title;
-	}
-
-	@JsonGetter("popularity")
-	public double getPopularity() {
-		return popularity;
-	}
-
-	@JsonSetter("popularity")
-	public void setPopularity(double popularity) {
-		this.popularity = popularity;
-	}
-
-	@JsonGetter("poster_path")
-	public String getPosterPath() {
-		return posterPath;
-	}
-
-	@JsonSetter("poster_path")
-	public void setPosterPath(String posterPath) {
-		this.posterPath = posterPath;
-	}
-
-	@JsonGetter("original_language")
-	public String getOriginalLanguage() {
-		return originalLanguage;
-	}
-
-	@JsonSetter("original_language")
-	public void setOriginalLanguage(String originalLanguage) {
-		this.originalLanguage = originalLanguage;
-	}
-
-	@JsonGetter("original_title")
-	public String getOriginalTitle() {
-		return originalTitle;
-	}
-
-	@JsonSetter("original_title")
-	public void setOriginalTitle(String originalTitle) {
-		this.originalTitle = originalTitle;
-	}
-
-	public ArrayList<String> getGenres() { // can't marshal an array out of json directly to object??
-		return genres;
-	}
-
-	public void setGenres(ArrayList<String> genres) {
-		this.genres = genres;
-	}
-
-	@JsonGetter("backdrop_path")
-	public String getBackdropPath() {
-		return backdropPath;
-	}
-
-	@JsonSetter("backdrop_path")
-	public void setBackdropPath(String backdropPath) {
-		this.backdropPath = backdropPath;
-	}
-
-	@JsonGetter("overview")
 	public String getOverview() {
 		return overview;
 	}
-
-	@JsonSetter("overview")
 	public void setOverview(String overview) {
 		this.overview = overview;
 	}
-
+	public Double getPopularity() {
+		return popularity;
+	}
+	public void setPopularity(Double popularity) {
+		this.popularity = popularity;
+	}
+	public String getPoster_path() {
+		return poster_path;
+	}
+	public void setPoster_path(String poster_path) {
+		this.poster_path = poster_path;
+	}
+	public String getRelease_date() {
+		return release_date;
+	}
+	public void setRelease_date(String release_date) {
+		this.release_date = release_date;
+	}
+	public long getRevenue() {
+		return revenue;
+	}
+	public void setRevenue(long revenue) {
+		this.revenue = revenue;
+	}
+	public int getRuntime() {
+		return runtime;
+	}
+	public void setRuntime(int runtime) {
+		this.runtime = runtime;
+	}
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	public String getTagline() {
+		return tagline;
+	}
+	public void setTagline(String tagline) {
+		this.tagline = tagline;
+	}
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	public boolean isVideo() {
+		return video;
+	}
+	public void setVideo(boolean video) {
+		this.video = video;
+	}
+	public double getVote_average() {
+		return vote_average;
+	}
+	public void setVote_average(double vote_average) {
+		this.vote_average = vote_average;
+	}
+	public int getVote_count() {
+		return vote_count;
+	}
+	public void setVote_count(int vote_count) {
+		this.vote_count = vote_count;
+	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((backdropPath == null) ? 0 : backdropPath.hashCode());
-		result = prime * result + ((genres == null) ? 0 : genres.hashCode());
+		result = prime * result + ((adult == null) ? 0 : adult.hashCode());
+		result = prime * result + ((backdrop_path == null) ? 0 : backdrop_path.hashCode());
+		result = prime * result + ((budget == null) ? 0 : budget.hashCode());
+		result = prime * result + ((homepage == null) ? 0 : homepage.hashCode());
 		result = prime * result + id;
-		result = prime * result + ((originalLanguage == null) ? 0 : originalLanguage.hashCode());
-		result = prime * result + ((originalTitle == null) ? 0 : originalTitle.hashCode());
+		result = prime * result + imdb_id;
+		result = prime * result + ((original_language == null) ? 0 : original_language.hashCode());
+		result = prime * result + ((original_title == null) ? 0 : original_title.hashCode());
 		result = prime * result + ((overview == null) ? 0 : overview.hashCode());
-		long temp;
-		temp = Double.doubleToLongBits(popularity);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
-		result = prime * result + ((posterPath == null) ? 0 : posterPath.hashCode());
+		result = prime * result + ((popularity == null) ? 0 : popularity.hashCode());
+		result = prime * result + ((poster_path == null) ? 0 : poster_path.hashCode());
+		result = prime * result + ((release_date == null) ? 0 : release_date.hashCode());
+		result = prime * result + (int) (revenue ^ (revenue >>> 32));
+		result = prime * result + runtime;
+		result = prime * result + ((status == null) ? 0 : status.hashCode());
+		result = prime * result + ((tagline == null) ? 0 : tagline.hashCode());
 		result = prime * result + ((title == null) ? 0 : title.hashCode());
-		result = prime * result + userId;
 		result = prime * result + (video ? 1231 : 1237);
-		temp = Double.doubleToLongBits(voteAverage);
+		long temp;
+		temp = Double.doubleToLongBits(vote_average);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
-		temp = Double.doubleToLongBits(voteCount);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = prime * result + vote_count;
 		return result;
 	}
-
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -226,71 +223,103 @@ public class Movie {
 		if (getClass() != obj.getClass())
 			return false;
 		Movie other = (Movie) obj;
-		if (backdropPath == null) {
-			if (other.backdropPath != null)
+		if (adult == null) {
+			if (other.adult != null)
 				return false;
-		} else if (!backdropPath.equals(other.backdropPath))
+		} else if (!adult.equals(other.adult))
 			return false;
-		if (genres == null) {
-			if (other.genres != null)
+		if (backdrop_path == null) {
+			if (other.backdrop_path != null)
 				return false;
-		} else if (!genres.equals(other.genres))
+		} else if (!backdrop_path.equals(other.backdrop_path))
+			return false;
+		if (budget == null) {
+			if (other.budget != null)
+				return false;
+		} else if (!budget.equals(other.budget))
+			return false;
+		if (homepage == null) {
+			if (other.homepage != null)
+				return false;
+		} else if (!homepage.equals(other.homepage))
 			return false;
 		if (id != other.id)
 			return false;
-		if (originalLanguage == null) {
-			if (other.originalLanguage != null)
-				return false;
-		} else if (!originalLanguage.equals(other.originalLanguage))
+		if (imdb_id != other.imdb_id)
 			return false;
-		if (originalTitle == null) {
-			if (other.originalTitle != null)
+		if (original_language == null) {
+			if (other.original_language != null)
 				return false;
-		} else if (!originalTitle.equals(other.originalTitle))
+		} else if (!original_language.equals(other.original_language))
+			return false;
+		if (original_title == null) {
+			if (other.original_title != null)
+				return false;
+		} else if (!original_title.equals(other.original_title))
 			return false;
 		if (overview == null) {
 			if (other.overview != null)
 				return false;
 		} else if (!overview.equals(other.overview))
 			return false;
-		if (Double.doubleToLongBits(popularity) != Double.doubleToLongBits(other.popularity))
-			return false;
-		if (posterPath == null) {
-			if (other.posterPath != null)
+		if (popularity == null) {
+			if (other.popularity != null)
 				return false;
-		} else if (!posterPath.equals(other.posterPath))
+		} else if (!popularity.equals(other.popularity))
+			return false;
+		if (poster_path == null) {
+			if (other.poster_path != null)
+				return false;
+		} else if (!poster_path.equals(other.poster_path))
+			return false;
+		if (release_date == null) {
+			if (other.release_date != null)
+				return false;
+		} else if (!release_date.equals(other.release_date))
+			return false;
+		if (revenue != other.revenue)
+			return false;
+		if (runtime != other.runtime)
+			return false;
+		if (status == null) {
+			if (other.status != null)
+				return false;
+		} else if (!status.equals(other.status))
+			return false;
+		if (tagline == null) {
+			if (other.tagline != null)
+				return false;
+		} else if (!tagline.equals(other.tagline))
 			return false;
 		if (title == null) {
 			if (other.title != null)
 				return false;
 		} else if (!title.equals(other.title))
 			return false;
-		if (userId != other.userId)
-			return false;
 		if (video != other.video)
 			return false;
-		if (Double.doubleToLongBits(voteAverage) != Double.doubleToLongBits(other.voteAverage))
+		if (Double.doubleToLongBits(vote_average) != Double.doubleToLongBits(other.vote_average))
 			return false;
-		if (Double.doubleToLongBits(voteCount) != Double.doubleToLongBits(other.voteCount))
+		if (vote_count != other.vote_count)
 			return false;
 		return true;
 	}
-
 	@Override
 	public String toString() {
-		return "Movie [id=" + id + ", userId=" + userId + ", voteCount=" + voteCount + ", video=" + video
-				+ ", voteAverage=" + voteAverage + ", title=" + title + ", popularity=" + popularity + ", posterPath="
-				+ posterPath + ", originalLanguage=" + originalLanguage + ", originalTitle=" + originalTitle
-				+ ", genres=" + genres + ", backdropPath=" + backdropPath + ", overview=" + overview + "]";
+		return "Movie [adult=" + adult + ", backdrop_path=" + backdrop_path + ", budget=" + budget + ", homepage="
+				+ homepage + ", id=" + id + ", imdb_id=" + imdb_id + ", original_language=" + original_language
+				+ ", original_title=" + original_title + ", overview=" + overview + ", popularity=" + popularity
+				+ ", poster_path=" + poster_path + ", release_date=" + release_date + ", revenue=" + revenue
+				+ ", runtime=" + runtime + ", status=" + status + ", tagline=" + tagline + ", title=" + title
+				+ ", video=" + video + ", vote_average=" + vote_average + ", vote_count=" + vote_count + "]";
 	}
 
-	// Possible fields:
-	// @JsonSetter above a setter, put key name from JSON in ("") so you can have a
-	// differently named variable/setter than the json key.
+	
+	
+	
 
 }
 /*
-{"page":1,"total_results":19806,"total_pages":991,"results":[
 {
 "vote_count":3645,
 "id":299534,

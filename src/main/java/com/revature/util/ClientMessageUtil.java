@@ -10,5 +10,7 @@ public class ClientMessageUtil {
 			new ClientMessage("Account update successful");
 	public static final ClientMessage SOMETHING_WENT_WRONG =
 			new ClientMessage("Something went wrong.");
+	public static final ClientMessage MOVIE_FAV_SUCCESS =
+			new ClientMessage("Movie Favorited Successfully");
 			
 }
