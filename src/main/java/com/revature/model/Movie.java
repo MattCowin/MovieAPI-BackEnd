@@ -26,8 +26,8 @@ public class Movie {
 	//private ArrayList<Genres> genres;
 	@Column
 	private String homepage;
-	//@Id			// how to handle multiple users adding the same movie?
-	@Column
+	@Id			
+	@Column			// how to handle multiple users adding the same movie?
 	private int id; //   <== PRIMARY KEY. Movie ID
 	@Column
 	private String imdb_id;
