@@ -195,7 +195,7 @@ public class Movie {
 		result = prime * result + ((budget == null) ? 0 : budget.hashCode());
 		result = prime * result + ((homepage == null) ? 0 : homepage.hashCode());
 		result = prime * result + id;
-		result = prime * result + imdb_id;
+		result = prime * result + ((imdb_id == null) ? 0 : imdb_id.hashCode());
 		result = prime * result + ((original_language == null) ? 0 : original_language.hashCode());
 		result = prime * result + ((original_title == null) ? 0 : original_title.hashCode());
 		result = prime * result + ((overview == null) ? 0 : overview.hashCode());
@@ -245,7 +245,10 @@ public class Movie {
 			return false;
 		if (id != other.id)
 			return false;
-		if (imdb_id != other.imdb_id)
+		if (imdb_id == null) {
+			if (other.imdb_id != null)
+				return false;
+		} else if (!imdb_id.equals(other.imdb_id))
 			return false;
 		if (original_language == null) {
 			if (other.original_language != null)
@@ -313,6 +316,8 @@ public class Movie {
 				+ ", runtime=" + runtime + ", status=" + status + ", tagline=" + tagline + ", title=" + title
 				+ ", video=" + video + ", vote_average=" + vote_average + ", vote_count=" + vote_count + "]";
 	}
+	
+	
 
 	
 	
