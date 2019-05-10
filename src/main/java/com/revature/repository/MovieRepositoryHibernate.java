@@ -48,8 +48,25 @@ public class MovieRepositoryHibernate implements MovieRepository {
 					.list()
 					.get(0);
 		}catch(IndexOutOfBoundsException e) {
+			logger.trace("***No movie found matching title " + title);
 			return null;
 		}
 	}
 
+	@Override
+	public Movie findMovieById(int movieId) {
+		logger.trace("*** Attempting to retrive a movie by id");
+		try {
+			return (Movie) sessionFactory.getCurrentSession().createCriteria(Movie.class)
+					.add(Restrictions.eq("id", movieId))
+					.list()
+					.get(0);
+		} catch (IndexOutOfBoundsException e) {
+			logger.trace("***No movie found matching id " + movieId);
+			return null;
+		}
+		
+	}
+
+	
 }

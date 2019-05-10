@@ -34,6 +34,10 @@ public class UserServiceAlpha implements UserService {
 		return user.getUserId() !=0;
 	}
 
+	@Override
+	public Users getUserById(int id) {
+		return userRepository.findByUserId(id);
+	}
 
 
 

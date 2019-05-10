@@ -42,5 +42,10 @@ public class MovieServiceAlpha implements MovieService{
 		movieRepository.save(movie);
 		return movie.getId() !=0;
 	}
+
+	@Override
+	public Movie getMovieById(int movieId) {
+		return movieRepository.findMovieById(movieId);
+	}
 	
 }

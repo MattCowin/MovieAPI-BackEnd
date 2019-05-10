@@ -7,6 +7,7 @@ public interface UserService {
 
 		public Users getUser(String username);
 		public boolean registerUser(Users user);
+		public Users getUserById(int id);
 		
 		
 }
