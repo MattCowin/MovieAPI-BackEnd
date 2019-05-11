@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -31,15 +32,17 @@ public class UserControllerAlpha implements UserController{
 		return (userService.registerUser(user)) ? REGISTRATION_SUCCESSFUL : SOMETHING_WENT_WRONG;
 	}
 
-	@PostMapping("/findUser")
+	@PostMapping(value="/findUser", produces = MediaType.APPLICATION_JSON_VALUE)
 	public Users findUser(@RequestBody Users user, HttpServletRequest request) {
 		logger.trace("Finding user " + user);
 		request.getSession();
 		return userService.getUser(user.getUsername());
 	}
 
-	@RequestMapping(value="/login", method=RequestMethod.POST)
-    public boolean login(@RequestBody Users user) {
+	//@RequestMapping(value="/login", method=RequestMethod.POST)
+	@PostMapping(value="/login")
+    public boolean login(@RequestBody Users user, HttpServletRequest request) {
+		logger.trace("Attempted to log in: " + user);
         return
           user.getUsername().equals("username") && user.getPassword().equals("password");
     }
