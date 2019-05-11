@@ -20,6 +20,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.revature.ajax.ClientMessage;
 import com.revature.model.Movie;
 import com.revature.service.MovieService;
+import org.springframework.http.RequestEntity;
+import org.springframework.http.ResponseEntity;
 
 @RestController("movieController")
 @CrossOrigin(origins = "*") //allow all cross-origin requests
@@ -72,6 +74,23 @@ public class MovieControllerAlpha implements MovieController {
 		return movieService.getMovieById(movieId);
 	}
 	
+	/*
+	 * Recommendations Logic:
+	 * 1. Angular sends GET request to /recommend?movieId=
+	 * 2. Store movie ID. Build string for API endpoint. HTTP ... apikey ... movieId ...
+	 * 3. Send GET request to API, (result is JSON, gets marshalled to POJO's)
+	 * 4. Send data back to Angular (marshal back to JSON)
+	 * 
+	 * exchange method on the REST template (see PopularMoviesAlpha impl)
+	 * ResponseEntity's (William's way)
+	 */
+	
+	@Override  		  //Recommend?movieId=
+	@GetMapping(value="/Recommend", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<?> getRecommended(@RequestParam("movieId") Integer movieId) {
+		return null;
+		
+	}
 	
 
 }
