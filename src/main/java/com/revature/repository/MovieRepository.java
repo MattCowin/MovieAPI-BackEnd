@@ -9,5 +9,6 @@ public interface MovieRepository {
 									// Potential functionalities:
 	void save(Movie movie);			// Save a favorite movie to the DB
 	List<Movie> findAll();			// Select * favorite movies
-	Movie findByName(String name);	// Find movie by name
+	Movie findByTitle(String title);// Find movie by name
+	Movie findMovieById(int movieId);
 }

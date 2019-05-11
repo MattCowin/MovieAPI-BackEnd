@@ -10,4 +10,5 @@ public interface MovieController {
 	ClientMessage addFavoriteMovie(Movie movie);    // add/register a favorite movie
 	List<Movie> findAllMovies();					// return all favorites
 	Movie findMovie(Movie movie);					// find specific favorite's info
+	Movie findMovieById(Integer movieId);
 }

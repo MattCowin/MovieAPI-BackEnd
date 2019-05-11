@@ -7,5 +7,7 @@ public interface UserRepository {
 
 		void save(Users user);
 		Users findByUsername(String username);
+		Users findByUserId(int id);
+		boolean updateFavorites(Users updatedUser);
 		
 }
