@@ -112,7 +112,7 @@
 
 	</dependencies>
 	<build>
-	<sourceDirectory>src/main</sourceDirectory> <!-- causes an error, troubleshooting now -->
+	<sourceDirectory>src</sourceDirectory> <!-- causes an error, troubleshooting now -->
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -126,7 +126,7 @@
 				<artifactId>maven-war-plugin</artifactId>
 				<version>3.2.1</version>
 				<configuration>
-					<warSourceDirectory>WebContent</warSourceDirectory>
+					<warSourceDirectory>webapp</warSourceDirectory>
 					<!-- <failOnMissingWebXml>false</failOnMissingWebXml>  -->
 				</configuration>
 			</plugin>
