@@ -13,5 +13,7 @@ public interface MovieController {
 	List<Movie> findAllMovies();					// return all favorites
 	Movie findMovie(Movie movie);					// find specific favorite's info
 	Movie findMovieById(Integer movieId);
-	ResponseEntity<?> getRecommended(Integer movieId);
+	List<Movie> getRecommended(Integer movieId);
+	List<Movie> findMyFavorites(Integer userId);
+	List<Movie> getPopular();
 }
