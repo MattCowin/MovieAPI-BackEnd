@@ -17,3 +17,6 @@
 # Optional Requirements
 * 1. Recommend theater showtimes and nearby restaraunts based on favorites
 * 2. Follow actors or directors to see movies they're in.
+
+# Link to Angular repo
+* https://github.com/fullstackprojecttwoangular/MovieApp

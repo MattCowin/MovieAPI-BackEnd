@@ -34,6 +34,7 @@ public class MovieRepositoryHibernate implements MovieRepository {
 		try {
 			return (List<Movie>) sessionFactory.getCurrentSession().createCriteria(Movie.class)
 					.list();
+			
 		}catch(IndexOutOfBoundsException e) {
 			return null;
 		}

@@ -2,6 +2,8 @@ package com.revature.rest;
 
 import java.util.List;
 
+import org.springframework.http.ResponseEntity;
+
 import com.revature.ajax.ClientMessage;
 import com.revature.model.Movie;
 
@@ -11,4 +13,7 @@ public interface MovieController {
 	List<Movie> findAllMovies();					// return all favorites
 	Movie findMovie(Movie movie);					// find specific favorite's info
 	Movie findMovieById(Integer movieId);
+	List<Movie> getRecommended(Integer movieId);
+	List<Movie> findMyFavorites(Integer userId);
+	List<Movie> getPopular();
 }
