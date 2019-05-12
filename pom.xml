@@ -112,6 +112,7 @@
 
 	</dependencies>
 	<build>
+	<sourceDirectory>src</sourceDirectory> <!-- causes an error, troubleshooting now -->
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
