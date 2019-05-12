@@ -43,7 +43,7 @@ public class MovieControllerAlpha implements MovieController {
 	@Autowired
 	private UserService userService;
 	
-	/*
+	/* 
 	 * Gets the favorites of the user whose ID is supplied.
 	 * Accesses a List<Movie> of that user which is created through @ManyToMany 
 	 * and an @JoinTable in the Users.class
