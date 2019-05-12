@@ -24,9 +24,9 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 public class Users {
 		
 		@Id
-		@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="userDataSequence")
-		@SequenceGenerator(name="userDataSequence", sequenceName="USERS_SEQ", allocationSize=1)
-		@Column(name="userId")
+		@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="userSequence")
+		@SequenceGenerator(name="userSequence", sequenceName="USERS_SEQ", allocationSize=1)
+		@Column(name="USERID")
 		private int userId;
 		@Column(name="USERNAME")
 		private String username;

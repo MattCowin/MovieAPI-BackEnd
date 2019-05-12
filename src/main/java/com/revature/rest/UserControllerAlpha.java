@@ -15,16 +15,23 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.ajax.ClientMessage;
+
 import com.revature.model.Movie;
 import com.revature.model.Users;
 import com.revature.repository.UserRepository;
 import com.revature.service.MovieService;
 import com.revature.service.UserService;
 @RestController("userController")
+
+
 @CrossOrigin(origins = "*")
 public class UserControllerAlpha implements UserController{
 	
@@ -35,14 +42,14 @@ public class UserControllerAlpha implements UserController{
 	private MovieService movieService;
 	@Autowired
 	private UserRepository userRepository;
-	
-	@PostMapping("/register")
+	@PostMapping(value="/register")
 	public ClientMessage registerUser(@RequestBody Users user) {
 		logger.trace("Registering a new user " + user);
 		return (userService.registerUser(user)) ? REGISTRATION_SUCCESSFUL : SOMETHING_WENT_WRONG;
 	}
 
-	@PostMapping("/findUser")
+
+	@PostMapping(value="/findUser", produces = MediaType.APPLICATION_JSON_VALUE)
 	public Users findUser(@RequestBody Users user, HttpServletRequest request) {
 		logger.trace("Finding user " + user);
 		request.getSession();
@@ -93,7 +100,17 @@ public class UserControllerAlpha implements UserController{
 			return userRepository.updateFavorites(user);
 		}
 		return false;
+	}
+
+	@RequestMapping(value="/login", method=RequestMethod.POST)
+    public boolean login(@RequestBody Users user, HttpServletRequest request) {
+		logger.trace("Attempted to log in: " + user);
+        return
+          user.getUsername().equals("username") && user.getPassword().equals("password");
+  
+    
 
 	}
+
 
 }
