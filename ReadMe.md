@@ -19,4 +19,4 @@
 * 2. Follow actors or directors to see movies they're in.
 
 # Link to Angular repo
-* https://github.com/fullstackprojecttwoangular/MovieApp
+* https://github.com/MattCowin/MovieApp.git
